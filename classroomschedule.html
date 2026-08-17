@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="png" href="c:\Users\CHRIST~1\AppData\Local\Temp\Rar$DRa26900.726.rartemp\aitelogo.png">
+
+
+<title>Classroom Schedule</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: antiquewhite;
+    padding: 30px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* HEADER */
+
+header {
+    background: rgb(190, 35, 190);
+    color: white;
+    padding: 30px;
+    border-radius: 18px;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+/* SCHEDULE */
+
+.schedule-box {
+    background-image: linear-gradient(white,purple);
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    overflow-x: auto;
+}
+
+.schedule-box h2 {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+th {
+    
+    color: black;
+    padding: 15px;
+}
+
+td {
+    border: 1px solid #e2e8f0;
+    padding: 15px;
+    text-align: center;
+    height: 70px;
+}
+
+.Floor{
+    
+    font-weight: bold;
+}
+
+.cris {
+    padding: 10px;
+    border-radius: 8px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.lecture1 {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.day{
+    background: #dcfce7;
+    color: #15803d;
+}
+.time {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+
+
+.dean {
+    background: #cffafe;
+    color: greenyellow
+}
+
+
+.suggestion-box {
+    background-image: linear-gradient(white,purple);
+    padding: 25px;
+    border-radius: 18px;
+    margin-top: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.suggestion-box h2 {
+    color: #1e3a8a;
+    margin-bottom: 8px;
+}
+
+.suggestion-box p {
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+input,
+select {
+    padding: 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+button {
+    margin-top: 20px;
+    padding: 13px 25px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+
+.submitted {
+    margin-top: 30px;
+}
+
+.submitted h3 {
+    margin-bottom: 15px;
+}
+
+.suggestion-item {
+    background: #f8fafc;
+    border-left: 5px solid #2563eb;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+}
+
+.suggestion-item strong {
+    color: #1e3a8a;
+}
+
+.suggestion-item span {
+    color: #475569;
+}
+
+.no-suggestions {
+    color: #94a3b8;
+}
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+}
+
+
+
+.auth-topbar {
+    max-width: 1200px;
+    margin: 0 auto 20px auto;
+    background: rgb(190, 35, 190);
+    color: white;
+    padding: 14px 25px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.auth-topbar .who {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.auth-topbar .role-tag {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.25);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.auth-topbar a.topbar-btn,
+.auth-topbar button.topbar-btn {
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.15);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.auth-topbar a.topbar-btn:hover,
+.auth-topbar button.topbar-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+
+
+.locked-notice {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    border-radius: 14px;
+    padding: 22px;
+}
+
+.locked-notice .lock-icon {
+    font-size: 34px;
+}
+
+.locked-notice h3 {
+    color: #334155;
+    margin-bottom: 6px;
+}
+
+.locked-notice p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.locked-notice a {
+    color: #2563eb;
+    font-weight: bold;
+}
+
+
+</style>
+</head>
+
+
+<body>
+
+<div class="auth-topbar" id="authTopbar">
+    <span class="who" id="authWho">Checking session…</span>
+    <a class="topbar-btn" id="authActionBtn" href="index.html">Log In</a>
+</div>
+
+<div class="container">
+
+    
+
+    <header>
+        <h1>📚 Aite Classroom Schedule</h1>
+        <p>Weekly Class Timetable • School Year 2026–2027</p>
+    </header>
+
+
+    <!-- SCHEDULE -->
+
+    <div class="schedule-box">
+
+        <h2>📅 Weekly Schedule – Monday</h2>
+
+        <table id="schedule1">
+
+            <thead>
+
+                <tr>
+                    <th>Floor</th>
+                    <th>Classroom</th>
+                    <th>Day</th>
+                    <th>time</th>
+                    <th>Teacher</th>
+                    <th>Dean approval</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td class="Floor">
+                        2nd Floor
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Classroom A</span>
+                    </td>
+
+                    <td>
+                        <span class="cris day">Monday</span>
+                    </td>
+
+                   <td> <span  class="cris time">10:00 - 11:00 Am </span>
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Maam Bernadeth</span>
+                    </td>
+
+                    <td>
+                        <span class="cris dean">Approved</span>
+                    </td>
+
+                </tr> 
+                <br>
+                <br>
+
+<!-- PERIOD 2 -->
+
+                <tr>
+
+                    <td class="Floor">
+                        3rd Floor
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Lecture Room C</span>
+                    </td>
+
+                    <td>
+                        <span class="cris day">Monday</span>
+                    </td>
+
+                     <td> <span  class="cris time">10:00 - 11:00 Am </span>
+                    </td>
+
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Maam tine</span>
+                    </td>
+
+                    <td>
+                        <span class="cris dean">Approved</span>
+                    </td>
+
+                </tr>
+
+<!-- PERIOD 3 -->
+
+                <tr>
+
+                    <td class="Floor">
+                        4th Floor
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Lecture room 4C</span>
+                    </td>
+
+                    <td>
+                        <span class="cris day">Monday</span>
+                    </td>
+
+                    <td> <span  class="cris time">10:00 - 11:00 Am </span>
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Maam betty</span>
+                    </td>
+
+                    <td>
+                        <span class="cris dean">Approved</span>
+                    </td>
+
+                </tr>
+
+</tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="schedule-box">
+
+        <h2>📅 Weekly Schedule – Tuesday</h2>
+
+        <table id="schedule2">
+
+            <thead>
+
+                <tr>
+                    <th>Floor</th>
+                    <th>Classroom</th>
+                    <th>Day</th>
+                    <th>time</th>
+                    <th>Teacher</th>
+                    <th>Dean approval</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+<tr>
+
+                    <td class="Floor">
+                        2nd Floor
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Classroom C</span>
+                    </td>
+
+                    <td>
+                        <span class="cris day">Tuesday</span>
+                    </td>
+
+                    <td>
+                        <span class="cris time">7:00 - 8:00 Am</span>
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Maam irish</span>
+                    </td>
+
+                    <td>
+                        <span class="cris dean">Approved</span>
+                    </td>
+
+                </tr>
+
+<tr>
+
+                    <td class="Floor">
+                        3rd Floor
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1"> Classroom c</span>
+                    </td>
+
+                    <td>
+                        <span class="cris day">Tuesday</span>
+                    </td>
+
+                    <td>
+                        <span class="cris time">8:00 - 9:00 Am</span>
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Maam path</span>
+                    </td>
+
+                    <td>
+                        <span class="cris dean">Approved</span>
+                    </td>
+
+                </tr>
+
+<tr>
+
+                    <td class="Floor">
+                        4th Floor
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Classroom C4 </span>
+                    </td>
+
+                    <td>
+                        <span class="cris day">Tuesday</span>
+                    </td>
+
+                    <td>
+                        <span class="cris time">10:00 - 11:00 Am</span>
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Sir leonard</span>
+                    </td>
+
+                    <td>
+                        <span class="cris dean">Approved</span>
+                    </td>
+
+                </tr>
+
+</tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="schedule-box">
+
+        <h2>📅 Weekly Schedule Wednesday</h2>
+
+        <table id="schedule3">
+
+            <thead>
+
+                <tr>
+                    <th>Floor</th>
+                    <th>Classroom</th>
+                    <th>Day</th>
+                    <th>time</th>
+                    <th>Teacher</th>
+                    <th>Dean approval</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+<tr>
+
+                    <td class="Floor">
+                        2nd Floor
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Classroom 4C</span>
+                    </td>
+
+                    <td>
+                        <span class="cris day">Wednesday</span>
+                    </td>
+
+                    <td>
+                        <span class="cris time">7:00 - 8:00 Am</span>
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Maam Shabana</span>
+                    </td>
+
+                    <td>
+                        <span class="cris dean">Approved</span>
+                    </td>
+
+                </tr>
+
+<tr>
+
+                    <td class="Floor">
+                        3rd Floor
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Classroom 3C</span>
+                    </td>
+
+                    <td>
+                        <span class="cris day">Wednesday</span>
+                    </td>
+
+                    <td>
+                        <span class="cris time">8:00 - 9:00 Am</span>
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Sir Tony</span>
+                    </td>
+
+                    <td>
+                        <span class="cris dean">Approved</span>
+                    </td>
+
+                </tr>
+
+<tr>
+
+                    <td class="Floor">
+                        4th Floor
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Classroom 4C</span>
+                    </td>
+
+                    <td>
+                        <span class="cris day">Wednesday</span>
+                    </td>
+
+                    <td>
+                        <span class="cris time">10:00 - 11:00 Am</span>
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Maam Dan</span>
+                    </td>
+
+                    <td>
+                        <span class="cris dean">Approved</span>
+                    </td>
+
+                </tr>
+
+</tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="schedule-box">
+
+        <h2>📅 Weekly Schedule – Thursday</h2>
+
+        <table id="schedule4">
+
+            <thead>
+
+                <tr>
+                    <th>Floor</th>
+                    <th>Classroom</th>
+                    <th>Day</th>
+                    <th>time</th>
+                    <th>Teacher</th>
+                    <th>Dean approval</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+<tr>
+
+                    <td class="Floor">
+                        2nd Floor
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Classroom C</span>
+                    </td>
+
+                    <td>
+                        <span class="cris day">Thursday</span>
+                    </td>
+
+                    <td>
+                        <span class="cris time">7:00 - 8:00 Am</span>
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Maam Salie</span>
+                    </td>
+
+                    <td>
+                        <span class="cris dean">Approved</span>
+                    </td>
+
+                </tr>
+
+<tr>
+
+                    <td class="Floor">
+                        3rd Floor
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Classroom 3C</span>
+                    </td>
+
+                    <td>
+                        <span class="cris day">Thursday</span>
+                    </td>
+
+                    <td>
+                        <span class="cris time">8:00 - 9:00 Am</span>
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Maam Alex </span>
+                    </td>
+
+                    <td>
+                        <span class="cris dean">Approved</span>
+                    </td>
+
+                </tr>
+
+<tr>
+
+                    <td class="Floor">
+                        4th Floor
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Classroom 4C</span>
+                    </td>
+
+                    <td>
+                        <span class="cris day">Thursday</span>
+                    </td>
+
+                    <td>
+                        <span class="cris time">10:00 - 11:00 Am</span>
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Maam Irish</span>
+                    </td>
+
+                    <td>
+                        <span class="cris dean">Approved</span>
+                    </td>
+
+                </tr>
+
+</tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="schedule-box">
+
+        <h2>📅 Weekly Schedule – Friday</h2>
+
+        <table id="schedule5">
+
+            <thead>
+
+                <tr>
+                    <th>Floor</th>
+                    <th>Classroom</th>
+                    <th>Day</th>
+                    <th>time</th>
+                    <th>Teacher</th>
+                    <th>Dean approval</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+<tr>
+
+                    <td class="Floor">
+                        2nd Floor
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Classroom C</span>
+                    </td>
+
+                    <td>
+                        <span class="cris day">Friday</span>
+                    </td>
+
+                    <td>
+                        <span class="cris time">7:00 - 8:00 Am</span>
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Maam Bernadeth</span>
+                    </td>
+
+                    <td>
+                        <span class="cris dean">Approved</span>
+                    </td>
+
+                </tr>
+
+<tr>
+
+                    <td class="Floor">
+                        3rd Floor
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Classroom 3C</span>
+                    </td>
+
+                    <td>
+                        <span class="cris day">Friday</span>
+                    </td>
+
+                    <td>
+                        <span class="cris time">8:00 - 9:00 Am</span>
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Sir Tony</span>
+                    </td>
+
+                    <td>
+                        <span class="cris dean">Approved</span>
+                    </td>
+
+                </tr>
+
+<tr>
+
+                    <td class="Floor">
+                        4th Floor
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Classroom C4</span>
+                    </td>
+
+                    <td>
+                        <span class="cris day">Friday</span>
+                    </td>
+
+                    <td>
+                        <span class="cris time">10:00 - 11:00 Am</span>
+                    </td>
+
+                    <td>
+                        <span class="cris lecture1">Maam path</span>
+                    </td>
+
+                    <td>
+                        <span class="cris dean">Approved</span>
+                    </td>
+
+                </tr>
+
+</tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- SUGGESTION BOX -->
+
+    <div class="suggestion-box">
+
+        <h2> Suggest a Schedule Change</h2>
+
+        <p>
+            Suggest a new date and time for a class schedule.
+            Your suggestion will appear below and the schedule will update automatically.
+        </p>
+
+        <!-- Shown only to logged-in teachers -->
+        <div id="teacherSuggestionTools" style="display:none;">
+
+        <form id="suggestionForm">
+
+            <div class="form-row">
+
+                <!-- DATE -->
+
+                <div class="form-group">
+
+                    <label for="date">
+                        📅 Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="date"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DAY -->
+
+                <div class="form-group">
+
+                    <label for="day">
+                        Floor
+                    </label>
+
+                    <select id="day" required>
+
+                        <option value="">
+                            Select Floor
+                        </option>
+
+                        <option value=" 2nd Floor">
+                            2nd Floor
+                        </option>
+
+                        <option value="3rd Floor">
+                            3rd Floor
+                        </option>
+
+                        <option value="4th Floor">
+                            4th Floor
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <!-- PERIOD -->
+
+                <div class="form-group">
+
+                    <label for="Teacher">
+                        Teacher
+                    </label>
+
+                    <select id="Teacher" required>
+
+                        <option value="">
+                            Select Name
+                        </option>
+
+                        <option value="Teacher1">
+                            Maam Bernadeth
+                        </option>
+
+                        <option value="Teacher2">
+                            Maam Irish
+                        </option>
+
+                        <option value="Teacher3">
+                            Maam Tine
+                        </option>
+
+                        <option value="Teacher4">
+                            Maam Betty
+                        </option>
+
+                        <option value="Teacher5">
+                            Maam path
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- NEW TIME -->
+
+                <div class="form-group">
+
+                    <label for="newTime">
+                        ⏰ Suggested Time
+                    </label>
+
+                    <input
+                        type="text"
+                        id="newTime"
+                        placeholder="Example: 8:00 - 9:00"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button type="submit">
+                Submit Suggestion
+            </button>
+
+        </form>
+
+
+        <!-- SUBMITTED SUGGESTIONS -->
+
+        <div class="submitted">
+
+            <h3>
+                📋 Submitted Suggestions
+            </h3>
+
+            <div id="suggestions">
+
+                <p class="no-suggestions">
+                    No suggestions submitted yet.
+                </p>
+
+            </div>
+
+        </div>
+
+        </div>
+        <!-- /teacherSuggestionTools -->
+
+        <!-- Shown to students and guests instead of the form -->
+        <div id="lockedSuggestionNotice" class="locked-notice" style="display:none;">
+            <div class="lock-icon">🔒</div>
+            <div>
+                <h3 id="lockedTitle">Only teachers can suggest schedule changes</h3>
+                <p id="lockedText">Log in with a teacher account to submit or edit room-change suggestions.</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+(function(){
+    const STORAGE_KEY = "violet_auth_users";
+    const SESSION_KEY = "violet_auth_session";
+
+    function getUsers(){
+        try{
+            const raw = localStorage.getItem(STORAGE_KEY);
+            return raw ? JSON.parse(raw) : [];
+        }catch(e){
+            return [];
+        }
+    }
+
+    const authWho = document.getElementById("authWho");
+    const authActionBtn = document.getElementById("authActionBtn");
+    const teacherTools = document.getElementById("teacherSuggestionTools");
+    const lockedNotice = document.getElementById("lockedSuggestionNotice");
+    const lockedTitle = document.getElementById("lockedTitle");
+    const lockedText = document.getElementById("lockedText");
+
+    const sessionUsername = localStorage.getItem(SESSION_KEY);
+    const users = getUsers();
+    const currentUser = sessionUsername
+        ? users.find(u => u.username === sessionUsername)
+        : null;
+
+    if(currentUser){
+
+        const roleLabel = currentUser.role === "teacher" ? "Teacher" : "Student";
+        authWho.innerHTML = "Logged in as " + currentUser.username +
+            ' <span class="role-tag">' + roleLabel + '</span>';
+
+        authActionBtn.textContent = "Log Out";
+        authActionBtn.href = "#";
+        authActionBtn.addEventListener("click", function(e){
+            e.preventDefault();
+            localStorage.removeItem(SESSION_KEY);
+            window.location.reload();
+        });
+
+        if(currentUser.role === "teacher"){
+            teacherTools.style.display = "block";
+            lockedNotice.style.display = "none";
+        }else{
+            teacherTools.style.display = "none";
+            lockedNotice.style.display = "flex";
+            lockedTitle.textContent = "Students can't suggest schedule changes";
+            lockedText.textContent = "Your account is registered as a student, so this section is view-only. Ask a teacher to submit room-change suggestions.";
+        }
+
+    }else{
+
+        authWho.textContent = "You're not logged in";
+        authActionBtn.textContent = "Log In";
+        authActionBtn.href = "index.html";
+
+        teacherTools.style.display = "none";
+        lockedNotice.style.display = "flex";
+        lockedTitle.textContent = "Log in as a teacher to suggest schedule changes";
+        lockedText.textContent = "Students and guests can view the schedule, but only a teacher account can submit or edit room-change suggestions.";
+    }
+
+})();
+
+</script>
+
+<script>
+
+const form = document.getElementById("suggestionForm");
+
+const suggestions = document.getElementById("suggestions");
+
+
+form.addEventListener("submit", function(event) {
+
+    // Prevent page refresh
+    event.preventDefault();
+
+
+    // Get values from form
+
+    const date =
+        document.getElementById("date").value;
+
+    const day =
+        document.getElementById("day").value;
+
+    const Teacher =
+        document.getElementById("Teacher").value;
+
+    const newTime =
+        document.getElementById("newTime").value;
+
+
+    // Make sure all fields have values
+
+    if (!date || !day || !Teacher || !newTime) {
+
+        alert("Please complete all fields.");
+
+        return;
+
+    }
+
+
+    // Change the actual time in the schedule
+
+    const timeCell =
+        document.getElementById(Teacher + "-time");
+
+    if (timeCell) {
+
+        timeCell.textContent = newTime;
+
+        // Highlight the changed time
+
+        timeCell.style.background = "#dcfce7";
+        timeCell.style.color = "#15803d";
+
+    }
+
+
+    // Remove "No suggestions submitted yet."
+
+    const emptyMessage =
+        document.querySelector(".no-suggestions");
+
+    if (emptyMessage) {
+
+        emptyMessage.remove();
+
+    }
+
+
+    // Format the date
+
+    const dateObject =
+        new Date(date + "T00:00:00");
+
+    const formattedDate =
+        dateObject.toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        });
+
+
+    // Create suggestion display
+
+    const suggestion =
+        document.createElement("div");
+
+    suggestion.classList.add("suggestion-item");
+
+
+    suggestion.innerHTML = `
+
+        <strong>Date:</strong>
+        <span>${formattedDate}</span>
+        <br>
+
+        <strong>Floor:</strong>
+        <span>${day}</span>
+        <br>
+
+        <strong> Teacher:</strong>
+        <span>${Teacher.replace("Teacher", "Teacher1 ")}</span>
+        <br>
+
+        <strong> Suggested Time:</strong>
+        <span>${newTime}</span>
+
+    `;
+
+
+    // Put suggestion into the suggestion box
+
+    suggestions.appendChild(suggestion);
+
+
+    // Reset form
+
+    form.reset();
+
+
+    // Success message
+
+    alert("Suggestion submitted and schedule updated!");
+
+});
+
+</script>
+
+</body>
+</html>
